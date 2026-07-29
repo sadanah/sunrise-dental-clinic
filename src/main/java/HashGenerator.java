@@ -1,6 +1,6 @@
 public class HashGenerator {
     public static void main(String[] args) throws Exception {
-        String password = "nperera";
+        String password = "pwd123";
         java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-256");
         byte[] hash = digest.digest(password.getBytes());
         StringBuilder sb = new StringBuilder();
