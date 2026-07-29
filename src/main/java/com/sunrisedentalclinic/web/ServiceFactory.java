@@ -36,4 +36,6 @@ public class ServiceFactory {
     public static StaffDAO getStaffDAO() { return staffDAO; }
     public static TreatmentTypeDAO getTreatmentTypeDAO() { return treatmentTypeDAO; }
     public static DentistDAO getDentistDAO() { return dentistDAO; }
+    private static final IHelpService helpService = new HelpService();
+    public static IHelpService getHelpService() { return helpService; }
 }
