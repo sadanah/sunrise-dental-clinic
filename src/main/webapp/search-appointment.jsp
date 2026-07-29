@@ -7,13 +7,14 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.sunrisedentalclinic.domain.Appointment" %>
+<% String ctx = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head><title>Search Appointment</title></head>
 <body>
 <h1>Search Appointment</h1>
 
-<form action="appointments/search" method="get">
+<form action="<%= ctx %>/appointments/search" method="get">
     <label>Appointment No</label>
     <input type="text" name="appointmentNo" required>
     <button type="submit">Search</button>
@@ -31,6 +32,6 @@
 <p>Time: <%= appt.getAppointmentTime() %></p>
 <p>Status: <%= appt.getStatus() %></p>
 <% } %>
-<a href="receptionist-dashboard.jsp">Back to Dashboard</a>
+<a href="<%= ctx %>/receptionist-dashboard.jsp">Back to Dashboard</a>
 </body>
 </html>

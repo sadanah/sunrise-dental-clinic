@@ -33,4 +33,7 @@ public class ServiceFactory {
     public static IAdminService getAdminService() { return adminService; }
     public static ClinicFacade getClinicFacade() { return clinicFacade; }
     public static PatientDAO getPatientDAO() { return patientDAO; }
+    public static StaffDAO getStaffDAO() { return staffDAO; }
+    public static TreatmentTypeDAO getTreatmentTypeDAO() { return treatmentTypeDAO; }
+    public static DentistDAO getDentistDAO() { return dentistDAO; }
 }

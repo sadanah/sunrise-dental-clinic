@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% String ctx = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,7 @@
 <p class="error"><%= request.getAttribute("errorMessage") %></p>
 <% } %>
 
-<form action="billing" method="post" onsubmit="return validateDiscount()">
+<form action="<%= ctx %>/billing" method="post" onsubmit="return validateDiscount()">
     <label>Appointment No</label>
     <input type="text" name="appointmentNo" required>
 
@@ -31,7 +32,7 @@
         <button type="submit" name="action" value="print">Generate & Print</button>
     </div>
 </form>
-<a href="receptionist-dashboard.jsp">Back to Dashboard</a>
+<a href="<%= ctx %>/receptionist-dashboard.jsp">Back to Dashboard</a>
 
 <script>
     function validateDiscount() {
