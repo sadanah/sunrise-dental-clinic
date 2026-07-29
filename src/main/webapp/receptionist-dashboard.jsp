@@ -15,6 +15,7 @@
     <li><a href="appointments/register">Register New Appointment</a></li>
     <li><a href="appointments/cancel">Cancel Appointment</a></li>
     <li><a href="appointments/search">Search / Display Appointment</a></li>
+    <li><a href="billing">Generate Bill</a></li>
 </ul>
 <a href="logout">Logout</a>
 </body>
