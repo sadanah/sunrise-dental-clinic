@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.sunrisedentalclinic.domain.Bill" %>
+<% String ctx = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head><title>Bill Receipt</title></head>
@@ -23,6 +24,6 @@
     <tr><td><strong>Total Amount</strong></td><td><strong><%= bill.getTotalAmount() %></strong></td></tr>
     <tr><td>Generated Date</td><td><%= bill.getGeneratedDate() %></td></tr>
 </table>
-<a href="receptionist-dashboard.jsp">Back to Dashboard</a>
+<a href="<%= ctx %>/receptionist-dashboard.jsp">Back to Dashboard</a>
 </body>
 </html>

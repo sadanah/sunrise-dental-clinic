@@ -6,11 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.sunrisedentalclinic.domain.*, java.util.List" %>
+<% String ctx = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Register Appointment</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="<%= ctx %>/css/style.css">
 </head>
 <body>
 <h1>Register New Appointment</h1>
@@ -19,15 +21,51 @@
 <p class="error"><%= request.getAttribute("errorMessage") %></p>
 <% } %>
 
-<form action="appointments/register" method="post" onsubmit="return validateForm()">
-    <label>Patient ID</label>
-    <input type="text" id="patientID" name="patientID" required>
+<form action="<%= ctx %>/appointments/register" method="post" onsubmit="return validateForm()">
+    <label>Patient</label>
+    <select name="patientID" required>
+        <option value="">-- Select Patient --</option>
+        <%
+            List<Patient> patients = (List<Patient>) request.getAttribute("patients");
+            if (patients != null) {
+                for (Patient p : patients) {
+        %>
+        <option value="<%= p.getPatientID() %>"><%= p.getName() %> (<%= p.getPatientID() %>)</option>
+        <%
+                }
+            }
+        %>
+    </select>
 
-    <label>Dentist ID</label>
-    <input type="text" id="dentistID" name="dentistID" required>
+    <label>Dentist</label>
+    <select name="dentistID" required>
+        <option value="">-- Select Dentist --</option>
+        <%
+            List<Dentist> dentists = (List<Dentist>) request.getAttribute("dentists");
+            if (dentists != null) {
+                for (Dentist d : dentists) {
+        %>
+        <option value="<%= d.getStaffID() %>">Dr. <%= d.getName() %> (<%= d.getSpecialization() %>)</option>
+        <%
+                }
+            }
+        %>
+    </select>
 
-    <label>Treatment ID</label>
-    <input type="text" id="treatmentID" name="treatmentID" required>
+    <label>Treatment</label>
+    <select name="treatmentID" required>
+        <option value="">-- Select Treatment --</option>
+        <%
+            List<TreatmentType> treatments = (List<TreatmentType>) request.getAttribute("treatments");
+            if (treatments != null) {
+                for (TreatmentType t : treatments) {
+        %>
+        <option value="<%= t.getTreatmentID() %>"><%= t.getTreatmentName() %> (Rs. <%= t.getBaseCost() %>)</option>
+        <%
+                }
+            }
+        %>
+    </select>
 
     <label>Date</label>
     <input type="date" id="date" name="date" required>
@@ -37,7 +75,7 @@
 
     <button type="submit">Register</button>
 </form>
-<a href="receptionist-dashboard.jsp">Back to Dashboard</a>
+<a href="<%= ctx %>/receptionist-dashboard.jsp">Back to Dashboard</a>
 
 <script>
     function validateForm() {
