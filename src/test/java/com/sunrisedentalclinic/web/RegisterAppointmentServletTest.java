@@ -1,5 +1,8 @@
 package com.sunrisedentalclinic.web;
 
+import com.sunrisedentalclinic.dao.DentistDAO;
+import com.sunrisedentalclinic.dao.PatientDAO;
+import com.sunrisedentalclinic.dao.TreatmentTypeDAO;
 import com.sunrisedentalclinic.domain.Appointment;
 import com.sunrisedentalclinic.domain.Session;
 import com.sunrisedentalclinic.exception.SlotUnavailableException;
@@ -10,6 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,14 +21,17 @@ import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class RegisterAppointmentServletTest {
 
     @Mock private ClinicFacade clinicFacade;
+    @Mock private PatientDAO patientDAO;
+    @Mock private DentistDAO dentistDAO;
+    @Mock private TreatmentTypeDAO treatmentTypeDAO;
     @Mock private HttpServletRequest request;
     @Mock private HttpServletResponse response;
     @Mock private HttpSession httpSession;
@@ -33,7 +40,7 @@ class RegisterAppointmentServletTest {
 
     @BeforeEach
     void setUp() {
-        servlet = new RegisterAppointmentServlet(clinicFacade);
+        servlet = new RegisterAppointmentServlet(clinicFacade, patientDAO, dentistDAO, treatmentTypeDAO);
 
         Session appSession = new Session("S1", LocalDateTime.now(), LocalDateTime.now().plusMinutes(30));
         appSession.setStaffID("R001");
@@ -41,6 +48,10 @@ class RegisterAppointmentServletTest {
 
         when(request.getSession(false)).thenReturn(httpSession);
         when(httpSession.getAttribute("appSession")).thenReturn(appSession);
+
+        lenient().when(patientDAO.findAll()).thenReturn(Collections.emptyList());
+        lenient().when(dentistDAO.findAll()).thenReturn(Collections.emptyList());
+        lenient().when(treatmentTypeDAO.findAll()).thenReturn(Collections.emptyList());
     }
 
     @Test
@@ -55,7 +66,7 @@ class RegisterAppointmentServletTest {
         when(clinicFacade.registerAppointment(eq("P001"), eq("D001"), eq("T001"), eq("R001"), any(), any()))
                 .thenReturn(appt);
 
-        javax.servlet.RequestDispatcher dispatcher = mock(javax.servlet.RequestDispatcher.class);
+        RequestDispatcher dispatcher = mock(RequestDispatcher.class);
         when(request.getRequestDispatcher("/appointment-confirmation.jsp")).thenReturn(dispatcher);
 
         servlet.doPost(request, response);
@@ -75,7 +86,7 @@ class RegisterAppointmentServletTest {
         when(clinicFacade.registerAppointment(any(), any(), any(), any(), any(), any()))
                 .thenThrow(new SlotUnavailableException("Slot already booked"));
 
-        javax.servlet.RequestDispatcher dispatcher = mock(javax.servlet.RequestDispatcher.class);
+        RequestDispatcher dispatcher = mock(RequestDispatcher.class);
         when(request.getRequestDispatcher("/register-appointment.jsp")).thenReturn(dispatcher);
 
         servlet.doPost(request, response);
