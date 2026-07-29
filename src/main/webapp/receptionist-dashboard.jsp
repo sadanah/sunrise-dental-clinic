@@ -17,6 +17,7 @@
     <li><a href="<%= ctx %>/appointments/cancel">Cancel Appointment</a></li>
     <li><a href="<%= ctx %>/appointments/search">Search / Display Appointment</a></li>
     <li><a href="<%= ctx %>/billing">Generate Bill</a></li>
+    <li><a href="<%= ctx %>/help">Help</a></li>
 </ul>
 <a href="<%= ctx %>/logout">Logout</a>
 </body>
