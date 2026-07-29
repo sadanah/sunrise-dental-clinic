@@ -16,6 +16,7 @@
     <li><a href="<%= ctx %>/admin/staff">Manage Staff Accounts</a></li>
     <li><a href="<%= ctx %>/admin/treatments">Manage Treatment Types</a></li>
     <li><a href="<%= ctx %>/admin/reports">Generate Reports</a></li>
+    <li><a href="<%= ctx %>/help">Help</a></li>
 </ul>
 <a href="logout">Logout</a>
 </body>

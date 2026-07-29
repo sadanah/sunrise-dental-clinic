@@ -1,0 +1,13 @@
+<%
+    com.sunrisedentalclinic.domain.Session appSession =
+            (com.sunrisedentalclinic.domain.Session) session.getAttribute("appSession");
+    String role = (appSession != null) ? appSession.getRole() : null;
+    String dashboardUrl;
+    if ("ADMIN".equals(role)) {
+        dashboardUrl = request.getContextPath() + "/admin-dashboard.jsp";
+    } else if ("DENTIST".equals(role)) {
+        dashboardUrl = request.getContextPath() + "/dentist-dashboard.jsp";
+    } else {
+        dashboardUrl = request.getContextPath() + "/receptionist-dashboard.jsp";
+    }
+%>
