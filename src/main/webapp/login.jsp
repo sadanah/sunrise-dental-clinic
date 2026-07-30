@@ -11,9 +11,9 @@
 <html>
 <head>
     <title>Sunrise Dental Clinic — Login</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="<%= ctx %>/css/style.css">
 </head>
-<body>
+<body class="login-page">
 <div class="login-container">
     <h1>Sunrise Dental Clinic</h1>
     <h2>Staff Login</h2>
