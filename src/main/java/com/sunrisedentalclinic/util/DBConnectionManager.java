@@ -6,14 +6,10 @@ import java.sql.SQLException;
 
 public class DBConnectionManager {
 
-    // This is a singleton object that is used throughout the code.
     private static DBConnectionManager instance;
 
-    // XAMPP default credentials
-
-    // use sunrise_dental for manual browsing on website and Tomcat testing
-    // switch to sunrise_dental_test when running mvn test / mvn clean package / commiting to github
-    private static final String URL = System.getProperty("db.url", "jdbc:mysql://localhost:3306/sunrise_dental_test?useSSL=false&serverTimezone=UTC");
+    private static final String DB_NAME = System.getProperty("db.name", "sunrise_dental_test");
+    private static final String URL = "jdbc:mysql://localhost:3306/" + DB_NAME + "?useSSL=false&serverTimezone=UTC";
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
