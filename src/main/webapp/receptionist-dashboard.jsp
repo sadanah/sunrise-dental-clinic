@@ -6,19 +6,27 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% String ctx = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
-<head><title>Receptionist Dashboard</title></head>
+<head>
+    <title>Receptionist Dashboard</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
 <body>
-<h1>Receptionist Dashboard</h1>
-<ul>
-    <li><a href="<%= ctx %>/appointments/register">Register New Appointment</a></li>
-    <li><a href="<%= ctx %>/appointments/cancel">Cancel Appointment</a></li>
-    <li><a href="<%= ctx %>/appointments/search">Search / Display Appointment</a></li>
-    <li><a href="<%= ctx %>/billing">Generate Bill</a></li>
-    <li><a href="<%= ctx %>/help">Help</a></li>
-</ul>
-<a href="<%= ctx %>/logout">Logout</a>
+
+<%@ include file="./WEB-INF/jspf/header.jspf" %>
+
+<div class="container">
+    <h1>Receptionist Dashboard</h1>
+    <p class="subtitle">Manage appointments and billing</p>
+
+    <ul class="dashboard-links">
+        <li><a href="<%= ctx %>/appointments/register">Register New Appointment</a></li>
+        <li><a href="<%= ctx %>/appointments/cancel">Cancel Appointment</a></li>
+        <li><a href="<%= ctx %>/appointments/search">Search / Display Appointment</a></li>
+        <li><a href="<%= ctx %>/billing">Generate Bill</a></li>
+    </ul>
+</div>
+
 </body>
 </html>
