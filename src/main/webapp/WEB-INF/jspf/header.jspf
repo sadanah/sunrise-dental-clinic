@@ -1,0 +1,26 @@
+<%@ page import="com.sunrisedentalclinic.domain.Session" %>
+<%
+    String ctx = request.getContextPath();
+    Session appSession = (Session) session.getAttribute("appSession");
+    String role = (appSession != null) ? appSession.getRole() : null;
+
+    String dashboardUrl;
+    if ("ADMIN".equals(role)) {
+        dashboardUrl = ctx + "/admin-dashboard.jsp";
+    } else if ("DENTIST".equals(role)) {
+        dashboardUrl = ctx + "/dentist-dashboard.jsp";
+    } else {
+        dashboardUrl = ctx + "/receptionist-dashboard.jsp";
+    }
+%>
+<link rel="stylesheet" href="<%= ctx %>/css/style.css">
+<nav class="navbar">
+    <span class="brand">Sunrise Dental Clinic</span>
+    <% if (appSession != null) { %>
+    <span class="nav-links">
+            <a href="<%= dashboardUrl %>">Dashboard</a>
+            <a href="<%= ctx %>/help">Help</a>
+            <a href="<%= ctx %>/logout">Logout</a>
+        </span>
+    <% } %>
+</nav>
