@@ -6,36 +6,44 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% String ctx = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
-<head><title>Generate Report</title></head>
+<head>
+    <title>Generate Report</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
 <body>
-<h1>Generate Report</h1>
+<%@ include file="./WEB-INF/jspf/header.jspf" %>
 
-<% if (request.getAttribute("errorMessage") != null) { %>
-<p class="error"><%= request.getAttribute("errorMessage") %></p>
-<% } %>
+<div>
+    <h1>Generate Report</h1>
 
-<form action="<%= ctx %>/admin/reports" method="post">
-    <label>Report Type</label>
-    <select name="type" required>
-        <option value="REVENUE">Revenue Report</option>
-        <option value="DAILY_APPOINTMENTS">Daily Appointment Report</option>
-        <option value="DENTIST_SCHEDULE">Dentist Schedule Report</option>
-    </select>
+    <% if (request.getAttribute("errorMessage") != null) { %>
+    <p class="error"><%= request.getAttribute("errorMessage") %></p>
+    <% } %>
 
-    <label>Start Date</label>
-    <input type="date" name="startDate">
+    <form action="<%= ctx %>/admin/reports" method="post">
+        <label>Report Type</label>
+        <select name="type" required>
+            <option value="REVENUE">Revenue Report</option>
+            <option value="DAILY_APPOINTMENTS">Daily Appointment Report</option>
+            <option value="DENTIST_SCHEDULE">Dentist Schedule Report</option>
+        </select>
 
-    <label>End Date</label>
-    <input type="date" name="endDate">
+        <label>Start Date</label>
+        <input type="date" name="startDate">
 
-    <label>Dentist ID (for Dentist Schedule report)</label>
-    <input type="text" name="dentistID">
+        <label>End Date</label>
+        <input type="date" name="endDate">
 
-    <button type="submit">Generate</button>
-</form>
-<a href="<%= ctx %>/admin-dashboard.jsp">Back to Dashboard</a>
+        <label>Dentist ID (for Dentist Schedule Report)</label>
+        <input type="text" name="dentistID">
+
+        <button type="submit">Generate</button>
+    </form>
+
+    <a class="back-link" href="<%= dashboardUrl %>">Back to Dashboard</a>
+</div>
+
 </body>
 </html>

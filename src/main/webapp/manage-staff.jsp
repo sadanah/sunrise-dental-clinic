@@ -7,80 +7,101 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.sunrisedentalclinic.domain.*, java.util.List" %>
-<% String ctx = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
-<head><title>Manage Staff</title></head>
+<head>
+    <title>Manage Staff</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
 <body>
-<h1>Manage Staff Accounts</h1>
 
-<% if (request.getAttribute("errorMessage") != null) { %>
-<p class="error"><%= request.getAttribute("errorMessage") %></p>
-<% } %>
-<% if (request.getAttribute("successMessage") != null) { %>
-<p class="success"><%= request.getAttribute("successMessage") %></p>
-<% } %>
+<%@ include file="./WEB-INF/jspf/header.jspf" %>
 
-<h2>Existing Staff</h2>
-<table border="1" cellpadding="6">
-    <tr><th>Staff ID</th><th>Name</th><th>Role</th><th>Username</th><th></th></tr>
-    <%
-        List<Staff> staffList = (List<Staff>) request.getAttribute("staffList");
-        for (Staff s : staffList) {
-    %>
-    <tr>
-        <td><%= s.getStaffID() %></td>
-        <td><%= s.getName() %></td>
-        <td><%= s.getRole() %></td>
-        <td><%= s.getUsername() %></td>
-        <td>
-            <form action="<%= ctx %>/admin/staff" method="post" style="display:inline">
-                <input type="hidden" name="action" value="delete">
-                <input type="hidden" name="staffID" value="<%= s.getStaffID() %>">
-                <button type="submit" onclick="return confirm('Delete this staff member?')">Delete</button>
-            </form>
-        </td>
-    </tr>
+<div>
+    <h1>Manage Staff Accounts</h1>
+
+    <% if (request.getAttribute("errorMessage") != null) { %>
+    <p class="error"><%= request.getAttribute("errorMessage") %></p>
     <% } %>
-</table>
 
-<h2>Add New Staff</h2>
-<form action="<%= ctx %>/admin/staff" method="post">
-    <input type="hidden" name="action" value="create">
+    <% if (request.getAttribute("successMessage") != null) { %>
+    <p class="success"><%= request.getAttribute("successMessage") %></p>
+    <% } %>
 
-    <label>Role</label>
-    <select name="role" required>
-        <option value="RECEPTIONIST">Receptionist</option>
-        <option value="DENTIST">Dentist</option>
-        <option value="ADMIN">Admin</option>
-    </select>
+    <h2>Existing Staff</h2>
+    <table>
+        <tr>
+            <th>Staff ID</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Username</th>
+            <th></th>
+        </tr>
 
-    <label>Staff ID</label>
-    <input type="text" name="staffID" required>
+        <%
+            List<Staff> staffList = (List<Staff>) request.getAttribute("staffList");
+            for (Staff s : staffList) {
+        %>
+        <tr>
+            <td><%= s.getStaffID() %></td>
+            <td><%= s.getName() %></td>
+            <td><%= s.getRole() %></td>
+            <td><%= s.getUsername() %></td>
+            <td>
+                <form action="<%= ctx %>/admin/staff" method="post" style="display:inline">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="staffID" value="<%= s.getStaffID() %>">
+                    <button type="submit"
+                            onclick="return confirm('Delete this staff member?')">
+                        Delete
+                    </button>
+                </form>
+            </td>
+        </tr>
+        <% } %>
+    </table>
 
-    <label>Name</label>
-    <input type="text" name="name" required>
+    <h2>Add New Staff</h2>
 
-    <label>Contact No</label>
-    <input type="text" name="contactNo" required>
+    <form action="<%= ctx %>/admin/staff" method="post">
+        <input type="hidden" name="action" value="create">
 
-    <label>Address</label>
-    <input type="text" name="address" required>
+        <label>Role</label>
+        <select name="role" required>
+            <option value="RECEPTIONIST">Receptionist</option>
+            <option value="DENTIST">Dentist</option>
+            <option value="ADMIN">Admin</option>
+        </select>
 
-    <label>Username</label>
-    <input type="text" name="username" required>
+        <label>Staff ID</label>
+        <input type="text" name="staffID" required>
 
-    <label>Password</label>
-    <input type="password" name="password" required minlength="8">
+        <label>Name</label>
+        <input type="text" name="name" required>
 
-    <label>Specialization (Dentist only)</label>
-    <input type="text" name="specialization">
+        <label>Contact No</label>
+        <input type="text" name="contactNo" required>
 
-    <label>Consultation Fee (Dentist only)</label>
-    <input type="number" name="consultationFee" step="0.01">
+        <label>Address</label>
+        <input type="text" name="address" required>
 
-    <button type="submit">Add Staff</button>
-</form>
-<a href="<%= ctx %>/admin-dashboard.jsp">Back to Dashboard</a>
+        <label>Username</label>
+        <input type="text" name="username" required>
+
+        <label>Password</label>
+        <input type="password" name="password" required minlength="8">
+
+        <label>Specialization (Dentist only)</label>
+        <input type="text" name="specialization">
+
+        <label>Consultation Fee (Dentist only)</label>
+        <input type="number" name="consultationFee" step="0.01">
+
+        <button type="submit">Add Staff</button>
+    </form>
+
+    <a class="back-link" href="<%= dashboardUrl %>">Back to Dashboard</a>
+</div>
+
 </body>
 </html>
