@@ -6,14 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% String ctx = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
+    <%@ include file="/WEB-INF/jspf/head.jspf" %>
     <title>Sunrise Dental Clinic — Login</title>
-    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="login-page">
 <div class="login-container">
     <h1>Sunrise Dental Clinic</h1>
     <h2>Staff Login</h2>

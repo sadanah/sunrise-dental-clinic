@@ -1,25 +1,32 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Sadana
-  Date: 7/29/2026
-  Time: 12:26 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.sunrisedentalclinic.domain.Appointment" %>
-<% String ctx = request.getContextPath(); %>
+<% request.setAttribute("currentPage", "appointments"); %>
 <!DOCTYPE html>
 <html>
-<head><title>Appointment Confirmed</title></head>
+<head>
+    <%@ include file="/WEB-INF/jspf/head.jspf" %>
+    <title>Appointment Confirmed</title>
+</head>
 <body>
-<h1>Appointment Registered Successfully</h1>
-<%
-    Appointment appt = (Appointment) request.getAttribute("appointment");
-%>
-<p>Appointment No: <%= appt.getAppointmentNo() %></p>
-<p>Date: <%= appt.getAppointmentDate() %></p>
-<p>Time: <%= appt.getAppointmentTime() %></p>
-<p>Status: <%= appt.getStatus() %></p>
-<a href="<%= ctx %>/receptionist-dashboard.jsp">Back to Dashboard</a>
+<div class="app-shell">
+    <%@ include file="/WEB-INF/jspf/sidebar.jspf" %>
+    <div class="app-main">
+        <div class="container">
+            <h1>Appointment Registered Successfully</h1>
+            <%
+                Appointment appt = (Appointment) request.getAttribute("appointment");
+                if (appt != null) {
+            %>
+            <p class="success">Appointment No: <%= appt.getAppointmentNo() %></p>
+            <p>Date: <%= appt.getAppointmentDate() %></p>
+            <p>Time: <%= appt.getAppointmentTime() %></p>
+            <p>Status: <%= appt.getStatus() %></p>
+            <%
+                }
+            %>
+            <a class="back-link" href="<%= dashboardUrl %>">Back to Dashboard</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>
