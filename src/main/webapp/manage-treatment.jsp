@@ -6,7 +6,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.sunrisedentalclinic.domain.TreatmentType, java.util.List" %>
-<% request.setAttribute("currentPage", "admin"); %>
+<% request.setAttribute("currentPage", "manage-treatment"); %>
 <!DOCTYPE html>
 <html>
 <head>
