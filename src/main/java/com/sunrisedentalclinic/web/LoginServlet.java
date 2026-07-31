@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 
             switch (session.getRole()) {
                 case "ADMIN" -> response.sendRedirect("admin-dashboard.jsp");
-                case "DENTIST" -> response.sendRedirect("dentist-dashboard.jsp");
+                case "DENTIST" -> response.sendRedirect("dentist/dashboard");
                 default -> response.sendRedirect("receptionist-dashboard.jsp");
             }
         } catch (AuthenticationException e) {

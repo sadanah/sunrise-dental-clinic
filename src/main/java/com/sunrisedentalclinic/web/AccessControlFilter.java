@@ -60,6 +60,13 @@ public class AccessControlFilter implements Filter {
             return;
         }
 
+        // Dentist-only pages
+        if ((path.startsWith("/dentist/") || path.equals("/dentist-dashboard.jsp"))
+                && !"DENTIST".equals(role)) {
+            response.sendRedirect(ctx + "/login.jsp");
+            return;
+        }
+
         chain.doFilter(req, res);
     }
 }

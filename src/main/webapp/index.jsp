@@ -9,14 +9,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%@ include file="/WEB-INF/jspf/head.jspf" %>
     <title>Sunrise Dental Clinic</title>
+    <%@ include file="/WEB-INF/jspf/head.jspf" %>
 </head>
-<body>
-
-<div>
-    <a href="<%= ctx %>/login.jsp">Login</a>
+<body class="landing-page">
+<div class="landing-hero">
+    <h1>Sunrise Dental Clinic</h1>
+    <p class="subtitle">Appointment & Patient Management System</p>
+    <a href="<%= ctx %>/login" class="btn-primary">Staff Login</a>
 </div>
-
 </body>
 </html>
