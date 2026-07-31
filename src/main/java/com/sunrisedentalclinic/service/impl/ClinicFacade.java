@@ -38,4 +38,8 @@ public class ClinicFacade {
     public Bill generateBill(String appointmentNo) {
         return billingService.calculateBill(appointmentNo);
     }
+
+    public Appointment searchAppointment(String appointmentNo) {
+        return appointmentService.searchAppointment(appointmentNo);
+    }
 }
