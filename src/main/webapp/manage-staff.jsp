@@ -10,12 +10,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <%@ include file="/WEB-INF/jspf/head.jspf" %>
     <title>Manage Staff</title>
 </head>
 <body>
 
 <div class="app-shell">
-    <%@ include file="/WEB-INF/jspf/header.jspf" %>
+    <%@ include file="/WEB-INF/jspf/sidebar.jspf" %>
 
     <div class="app-main">
         <div class="container">

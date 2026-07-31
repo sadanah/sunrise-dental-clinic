@@ -9,11 +9,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <%@ include file="/WEB-INF/jspf/head.jspf" %>
     <title>Generate Report</title>
 </head>
 <body>
 <div class="app-shell">
-    <%@ include file="/WEB-INF/jspf/header.jspf" %>
+    <%@ include file="/WEB-INF/jspf/sidebar.jspf" %>
 
     <div class="app-main">
         <div class="container">

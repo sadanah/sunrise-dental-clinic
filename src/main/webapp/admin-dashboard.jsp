@@ -10,12 +10,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <%@ include file="/WEB-INF/jspf/head.jspf" %>
     <title>Admin Dashboard</title>
 </head>
 <body>
 <%-- CHANGED: wrap header + page content in app-shell so sidebar and main sit side by side --%>
 <div class="app-shell">
-    <%@ include file="/WEB-INF/jspf/header.jspf" %>
+    <%@ include file="/WEB-INF/jspf/sidebar.jspf" %>
 
     <%-- CHANGED: app-main replaces bare body flow; container now lives inside it --%>
     <div class="app-main">
