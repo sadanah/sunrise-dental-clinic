@@ -8,7 +8,7 @@ public class DBConnectionManager {
 
     private static DBConnectionManager instance;
 
-    private static final String DB_NAME = System.getProperty("db.name", "sunrise_dental_test");
+    private static final String DB_NAME = System.getProperty("db.name", "sunrise_dental");
     private static final String URL = "jdbc:mysql://localhost:3306/" + DB_NAME + "?useSSL=false&serverTimezone=UTC";
     private static final String USER = "root";
     private static final String PASSWORD = "";
