@@ -1,6 +1,5 @@
 <%@ page import="com.sunrisedentalclinic.domain.Session" %>
 <%
-    String ctx = request.getContextPath();
     Session appSession = (Session) session.getAttribute("appSession");
     String role = (appSession != null) ? appSession.getRole() : null;
     String currentPage = (String) request.getAttribute("currentPage");
@@ -14,10 +13,6 @@
         dashboardUrl = ctx + "/receptionist-dashboard.jsp";
     }
 %>
-<link rel="stylesheet" href="<%= ctx %>/css/style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-
 <% if (appSession != null) { %>
 <div class="sidebar">
     <div class="brand">Sunrise Dental</div>
@@ -27,11 +22,12 @@
     <a class="nav-item <%= "billing".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/generate-bill.jsp">Billing</a>
     <% } %>
     <% if ("ADMIN".equals(role)) { %>
-    <a class="nav-item <%= "reports".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/generate-report.jsp">Reports</a>
-    <a class="nav-item <%= "admin".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/manage-staff.jsp">Admin</a>
+    <a class="nav-item <%= "reports".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/admin/reports">Reports</a>
+    <a class="nav-item <%= "manage-staff".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/admin/staff">Manage Staff</a>
+    <a class="nav-item <%= "manage-treatment".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/admin/treatments">Manage Treatments</a>
     <% } %>
     <div class="nav-footer">
-        <a class="nav-item" href="<%= ctx %>/help.jsp">Help</a>
+        <a class="nav-item" href="<%= ctx %>/help">Help</a>
         <a class="nav-item" href="<%= ctx %>/logout">Logout</a>
     </div>
 </div>
