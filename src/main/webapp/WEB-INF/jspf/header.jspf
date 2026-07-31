@@ -3,6 +3,7 @@
     String ctx = request.getContextPath();
     Session appSession = (Session) session.getAttribute("appSession");
     String role = (appSession != null) ? appSession.getRole() : null;
+    String currentPage = (String) request.getAttribute("currentPage"); // set by each JSP, e.g. "dashboard"
 
     String dashboardUrl;
     if ("ADMIN".equals(role)) {
@@ -14,13 +15,27 @@
     }
 %>
 <link rel="stylesheet" href="<%= ctx %>/css/style.css">
-<nav class="navbar">
-    <span class="brand">Sunrise Dental Clinic</span>
-    <% if (appSession != null) { %>
-    <span class="nav-links">
-            <a href="<%= dashboardUrl %>">Dashboard</a>
-            <a href="<%= ctx %>/help">Help</a>
-            <a href="<%= ctx %>/logout">Logout</a>
-        </span>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<% if (appSession != null) { %>
+<div class="sidebar">
+    <div class="brand">Sunrise Dental</div>
+    <a class="nav-item <%= "dashboard".equals(currentPage) ? "active" : "" %>" href="<%= dashboardUrl %>">Dashboard</a>
+    <a class="nav-item <%= "appointments".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/appointments.jsp">Appointments</a>
+    <% if ("ADMIN".equals(role) || "RECEPTIONIST".equals(role)) { %>
+    <a class="nav-item <%= "patients".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/patients.jsp">Patients</a>
+    <a class="nav-item <%= "billing".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/billing.jsp">Billing</a>
     <% } %>
-</nav>
+    <% if ("ADMIN".equals(role)) { %>
+    <a class="nav-item <%= "reports".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/reports.jsp">Reports</a>
+    <a class="nav-item <%= "admin".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/admin.jsp">Admin</a>
+    <% } %>
+    <div class="nav-footer">
+        <a class="nav-item" href="<%= ctx %>/help">Help</a>
+        <a class="nav-item" href="<%= ctx %>/logout">Logout</a>
+    </div>
+</div>
+<% } %>
+
+<!-- REPLACE ALL NEW LINKS WITH WORKING LINKS-->

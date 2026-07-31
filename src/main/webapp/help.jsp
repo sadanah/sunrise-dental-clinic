@@ -14,48 +14,51 @@
 </head>
 
 <body>
-<%@ include file="/WEB-INF/jspf/header.jspf" %>
+<div class="app-shell">
+    <%@ include file="/WEB-INF/jspf/header.jspf" %>
 
-<div>
-    <h1>Help Section</h1>
-    <p>New to the system? Select a topic below for step-by-step guidance.</p>
+    <div class="app-main">
+        <div class="container">
+            <h1>Help Section</h1>
+            <p class="subtitle">New to the system? Select a topic below for step-by-step guidance.</p>
 
-    <h2>Topics</h2>
+            <h2>Topics</h2>
 
-    <ul>
-        <%
-            List<String> topics = (List<String>) request.getAttribute("topics");
-            if (topics != null) {
-                for (String topic : topics) {
-        %>
-        <li>
-            <a href="<%= ctx %>/help?topic=<%= topic %>">
-                <%= topic.replace("-", " ") %>
-            </a>
-        </li>
-        <%
+            <ul>
+                <%
+                    List<String> topics = (List<String>) request.getAttribute("topics");
+                    if (topics != null) {
+                        for (String topic : topics) {
+                %>
+                <li>
+                    <a href="<%= ctx %>/help?topic=<%= topic %>">
+                        <%= topic.replace("-", " ") %>
+                    </a>
+                </li>
+                <%
+                        }
+                    }
+                %>
+            </ul>
+
+            <%
+                String selectedTopic = (String) request.getAttribute("selectedTopic");
+                if (selectedTopic != null) {
+            %>
+
+            <hr>
+
+            <h2><%= selectedTopic.replace("-", " ") %></h2>
+
+            <p><%= request.getAttribute("helpContent") %></p>
+
+            <%
                 }
-            }
-        %>
-    </ul>
+            %>
 
-    <%
-        String selectedTopic = (String) request.getAttribute("selectedTopic");
-        if (selectedTopic != null) {
-    %>
-
-    <hr>
-
-    <h2><%= selectedTopic.replace("-", " ") %></h2>
-
-    <p><%= request.getAttribute("helpContent") %></p>
-
-    <%
-        }
-    %>
-
-    <a class="back-link" href="<%= dashboardUrl %>">Back to Dashboard</a>
+            <a class="back-link" href="<%= dashboardUrl %>">Back to Dashboard</a>
+        </div>
+    </div>
 </div>
-
 </body>
 </html>
