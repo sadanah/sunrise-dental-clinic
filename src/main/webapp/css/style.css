@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    font-family:'Poppins',sans-serif;
+}
+
 /* ===== Reset & base ===== */
 * {
     box-sizing: border-box;
@@ -674,37 +680,194 @@ button:disabled {
     font-size: 0.9rem;
 }
 
-/* ===== Login page ===== */
+/* ===========================
+   LOGIN PAGE
+=========================== */
+
 .login-page {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: 0;
+    font-family: Poppins, Helvetica, sans-serif;
+
+    background-image:
+            linear-gradient(
+                    90deg,
+                    rgb(50 93 213 / 0.72) 0%,
+                    rgba(120,155,250,0.58) 28%,
+                    rgba(255,255,255,0.86) 55%,
+                    rgba(255,255,255,0.98) 100%
+            ),
+            url("../images/login_img.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative;
     min-height: 100vh;
-    background-color: var(--color-surface);
 }
 
-.login-container {
-    background: var(--color-white);
-    padding: 40px;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-    width: 100%;
-    max-width: 380px;
-    text-align: center;
+.login-overlay{
+
+    width:100%;
+    min-height:100vh;
+
+    display:flex;
+    justify-content: start;
+    align-items:center;
+
+    padding:0 8%;
+    box-sizing:border-box;
 }
 
-.login-container h1 {
-    font-size: 1.35rem;
+.hero-section{
+
+    width:45%;
+    color:white;
 }
 
-.login-container h2 {
-    color: var(--color-slate);
-    font-size: 0.95rem;
-    font-weight: 400;
-    margin-bottom: 18px;
+.hero-section h1{
+
+    margin:0;
+    font-size:56px;
+    font-weight:700;
+    line-height:1.1;
 }
 
-.login-container form {
-    text-align: left;
-    margin: 0 auto;
+.hero-section p{
+
+    margin-top:18px;
+    font-size:22px;
+    opacity:.95;
 }
+
+.login-card{
+
+    width:420px;
+    margin-left: 200px;
+    background:white;
+
+    border-radius:18px;
+
+    padding:45px;
+
+    box-shadow:
+            0 20px 50px rgba(0,0,0,.18);
+}
+
+.login-card h2{
+
+    margin-top:0;
+    margin-bottom:30px;
+
+    text-align:center;
+
+    color:#1d2b4f;
+}
+
+.login-card label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    margin-top:18px;
+
+    font-weight:600;
+}
+
+.login-card input{
+
+    width:100%;
+
+    padding:14px;
+
+    box-sizing:border-box;
+
+    border:1px solid #d8d8d8;
+
+    border-radius:8px;
+
+    font-size:15px;
+}
+
+.login-card button{
+
+    width:100%;
+
+    margin-top:30px;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#5a81fa;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.login-card button:hover{
+
+    background:#436df2;
+}
+
+.error{
+
+    color:#d32f2f;
+
+    margin-bottom:15px;
+}
+
+.login-footer {
+    position: fixed;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-size: 14px;
+    color: #2C3D8F;
+    letter-spacing: 0.4px;
+
+    z-index: 100;
+}
+
+@media (max-width: 900px){
+
+    .login-overlay{
+
+        flex-direction:column;
+
+        justify-content:center;
+
+        gap:50px;
+
+        padding:40px;
+    }
+
+    .hero-section{
+
+        width:100%;
+        text-align:center;
+    }
+
+    .hero-section h1{
+
+        font-size:42px;
+    }
+
+    .login-card{
+
+        width:100%;
+        max-width:430px;
+    }
+}
+

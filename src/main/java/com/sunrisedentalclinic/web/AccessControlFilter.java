@@ -23,7 +23,7 @@ public class AccessControlFilter implements Filter {
         String ctx = request.getContextPath();
 
         // Public pages — no auth required
-        if (path.equals("/login") || path.equals("/login.jsp") || path.startsWith("/css/") || path.equals("/index.jsp") || path.equals("/")) {
+        if (path.equals("/login") || path.equals("/login.jsp") || path.startsWith("/css/") || path.startsWith("/images/") || path.equals("/index.jsp") || path.equals("/")) {
             chain.doFilter(req, res);
             return;
         }
