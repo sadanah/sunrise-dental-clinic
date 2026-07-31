@@ -6,6 +6,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.sunrisedentalclinic.report.*" %>
+<%@ page import="com.sunrisedentalclinic.domain.Appointment" %>
+<%@ page import="java.util.List" %>
 <% request.setAttribute("currentPage", "reports"); %>
 <!DOCTYPE html>
 <html>
@@ -35,9 +37,85 @@
             %>
             <h2>Total Revenue: <%= rr.getTotalRevenue() %></h2>
             <%
+            } else if (report instanceof DailyAppointmentReport) {
+                DailyAppointmentReport dar = (DailyAppointmentReport) report;
+                List<Appointment> appts = dar.getAppointments();
+            %>
+            <h2>Appointments (<%= appts.size() %>)</h2>
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>Appointment No</th>
+                    <th>Patient</th>
+                    <th>Dentist</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%
+                    if (appts.isEmpty()) {
+                %>
+                <tr><td colspan="6">No appointments found.</td></tr>
+                <%
+                } else {
+                    for (Appointment a : appts) {
+                %>
+                <tr>
+                    <td><%= a.getAppointmentNo() %></td>
+                    <td><%= a.getPatientID() %></td>
+                    <td><%= a.getDentistID() %></td>
+                    <td><%= a.getAppointmentDate() %></td>
+                    <td><%= a.getAppointmentTime() %></td>
+                    <td><%= a.getStatus() %></td>
+                </tr>
+                <%
+                        }
+                    }
+                %>
+                </tbody>
+            </table>
+            <%
+            } else if (report instanceof DentistScheduleReport) {
+                DentistScheduleReport dsr = (DentistScheduleReport) report;
+                List<Appointment> appts = dsr.getAppointments();
+            %>
+            <h2>Dentist Schedule (<%= appts.size() %>)</h2>
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>Appointment No</th>
+                    <th>Patient</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%
+                    if (appts.isEmpty()) {
+                %>
+                <tr><td colspan="5">No appointments found.</td></tr>
+                <%
+                } else {
+                    for (Appointment a : appts) {
+                %>
+                <tr>
+                    <td><%= a.getAppointmentNo() %></td>
+                    <td><%= a.getPatientID() %></td>
+                    <td><%= a.getAppointmentDate() %></td>
+                    <td><%= a.getAppointmentTime() %></td>
+                    <td><%= a.getStatus() %></td>
+                </tr>
+                <%
+                        }
+                    }
+                %>
+                </tbody>
+            </table>
+            <%
                 }
-                // Add similar instanceof blocks for DailyAppointmentReport / DentistScheduleReport
-                // once their result-holding fields/getters are finalized
             %>
 
             <a class="back-link" href="<%= dashboardUrl %>">Back to Dashboard</a>

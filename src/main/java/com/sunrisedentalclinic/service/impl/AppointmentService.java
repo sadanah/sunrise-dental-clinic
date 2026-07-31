@@ -11,7 +11,9 @@ import com.sunrisedentalclinic.service.INotificationService;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class AppointmentService implements IAppointmentService {
 
@@ -81,5 +83,14 @@ public class AppointmentService implements IAppointmentService {
     @Override
     public boolean checkAvailability(String dentistID, LocalDate date, LocalTime time) {
         return appointmentDAO.findByDentistAndDateTime(dentistID, date, time) == null;
+    }
+
+    @Override
+    public List<Appointment> getUpcomingAppointmentsForDentist(String dentistID) {
+        LocalDate today = LocalDate.now();
+        return appointmentDAO.findByDentist(dentistID).stream()
+                .filter(a -> !a.getAppointmentDate().isBefore(today))
+                .filter(a -> a.getStatus() == AppointmentStatus.SCHEDULED)
+                .collect(Collectors.toList());
     }
 }

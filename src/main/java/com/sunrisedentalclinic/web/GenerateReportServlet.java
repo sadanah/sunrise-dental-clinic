@@ -55,6 +55,22 @@ public class GenerateReportServlet extends HttpServlet {
             LocalDate startDate = (startDateStr != null && !startDateStr.isEmpty()) ? LocalDate.parse(startDateStr) : null;
             LocalDate endDate = (endDateStr != null && !endDateStr.isEmpty()) ? LocalDate.parse(endDateStr) : null;
 
+            if (type.equals("DENTIST_SCHEDULE") && (startDate == null || dentistID == null || dentistID.isEmpty())) {
+                request.setAttribute("errorMessage", "Dentist ID and date are required for this report type.");
+                request.getRequestDispatcher("/generate-report.jsp").forward(request, response);
+                return;
+            }
+            if ((type.equals("REVENUE")) && (startDate == null || endDate == null)) {
+                request.setAttribute("errorMessage", "Start and end dates are required for this report type.");
+                request.getRequestDispatcher("/generate-report.jsp").forward(request, response);
+                return;
+            }
+            if (type.equals("DAILY_APPOINTMENTS") && startDate == null) {
+                request.setAttribute("errorMessage", "Start date is required for this report type.");
+                request.getRequestDispatcher("/generate-report.jsp").forward(request, response);
+                return;
+            }
+
             Report report = adminService.generateReport(type, session.getSessionID(), startDate, endDate, dentistID);
             request.setAttribute("report", report);
             request.getRequestDispatcher("/report-result.jsp").forward(request, response);
