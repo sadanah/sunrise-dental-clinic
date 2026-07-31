@@ -17,8 +17,8 @@
 <div class="sidebar">
     <div class="brand">Sunrise Dental</div>
     <a class="nav-item <%= "dashboard".equals(currentPage) ? "active" : "" %>" href="<%= dashboardUrl %>">Dashboard</a>
+    <% if ("RECEPTIONIST".equals(role)) { %>
     <a class="nav-item <%= "appointments".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/register-appointment.jsp">Appointments</a>
-    <% if ("ADMIN".equals(role) || "RECEPTIONIST".equals(role)) { %>
     <a class="nav-item <%= "billing".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/generate-bill.jsp">Billing</a>
     <% } %>
     <% if ("ADMIN".equals(role)) { %>
