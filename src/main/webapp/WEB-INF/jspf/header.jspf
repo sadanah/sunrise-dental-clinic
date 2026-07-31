@@ -3,7 +3,7 @@
     String ctx = request.getContextPath();
     Session appSession = (Session) session.getAttribute("appSession");
     String role = (appSession != null) ? appSession.getRole() : null;
-    String currentPage = (String) request.getAttribute("currentPage"); // set by each JSP, e.g. "dashboard"
+    String currentPage = (String) request.getAttribute("currentPage");
 
     String dashboardUrl;
     if ("ADMIN".equals(role)) {
@@ -22,20 +22,17 @@
 <div class="sidebar">
     <div class="brand">Sunrise Dental</div>
     <a class="nav-item <%= "dashboard".equals(currentPage) ? "active" : "" %>" href="<%= dashboardUrl %>">Dashboard</a>
-    <a class="nav-item <%= "appointments".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/appointments.jsp">Appointments</a>
+    <a class="nav-item <%= "appointments".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/register-appointment.jsp">Appointments</a>
     <% if ("ADMIN".equals(role) || "RECEPTIONIST".equals(role)) { %>
-    <a class="nav-item <%= "patients".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/patients.jsp">Patients</a>
-    <a class="nav-item <%= "billing".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/billing.jsp">Billing</a>
+    <a class="nav-item <%= "billing".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/generate-bill.jsp">Billing</a>
     <% } %>
     <% if ("ADMIN".equals(role)) { %>
-    <a class="nav-item <%= "reports".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/reports.jsp">Reports</a>
-    <a class="nav-item <%= "admin".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/admin.jsp">Admin</a>
+    <a class="nav-item <%= "reports".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/generate-report.jsp">Reports</a>
+    <a class="nav-item <%= "admin".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/manage-staff.jsp">Admin</a>
     <% } %>
     <div class="nav-footer">
-        <a class="nav-item" href="<%= ctx %>/help">Help</a>
+        <a class="nav-item" href="<%= ctx %>/help.jsp">Help</a>
         <a class="nav-item" href="<%= ctx %>/logout">Logout</a>
     </div>
 </div>
 <% } %>
-
-<!-- REPLACE ALL NEW LINKS WITH WORKING LINKS-->

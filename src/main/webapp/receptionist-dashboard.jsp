@@ -3,23 +3,9 @@
   User: Sadana
   Date: 7/29/2026
   Time: 11:50 PM
-  To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Receptionist Dashboard</title>
-    <link rel="stylesheet" href="./css/style.css">
-</head>
-<body><%--
-  Created by IntelliJ IDEA.
-  User: Sadana
-  Date: 7/29/2026
-  Time: 11:50 PM
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-    <% request.setAttribute("currentPage", "dashboard"); %>
+<% request.setAttribute("currentPage", "dashboard"); %>
 <!DOCTYPE html>
 <html>
 <head>
