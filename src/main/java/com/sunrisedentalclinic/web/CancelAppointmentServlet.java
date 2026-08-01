@@ -1,5 +1,6 @@
 package com.sunrisedentalclinic.web;
 
+import com.sunrisedentalclinic.domain.Appointment;
 import com.sunrisedentalclinic.exception.AppointmentNotFoundException;
 import com.sunrisedentalclinic.exception.InvalidCancellationException;
 import com.sunrisedentalclinic.service.impl.ClinicFacade;
@@ -32,6 +33,17 @@ public class CancelAppointmentServlet extends HttpServlet {
             response.sendRedirect("login.jsp");
             return;
         }
+
+        String appointmentNo = request.getParameter("appointmentNo");
+        if (appointmentNo != null && !appointmentNo.trim().isEmpty()) {
+            try {
+                Appointment appointment = clinicFacade.searchAppointment(appointmentNo);
+                request.setAttribute("appointment", appointment);
+            } catch (AppointmentNotFoundException e) {
+                request.setAttribute("errorMessage", e.getMessage());
+            }
+        }
+
         request.getRequestDispatcher("/cancel-appointment.jsp").forward(request, response);
     }
 

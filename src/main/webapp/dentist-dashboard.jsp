@@ -8,9 +8,23 @@
 <%--
   Dentist Dashboard — shows the logged-in dentist's own upcoming appointments.
 --%>
+<%--
+  Dentist Dashboard — shows the logged-in dentist's own upcoming appointments.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.sunrisedentalclinic.domain.Appointment" %>
 <%@ page import="java.util.List" %>
+<%!
+    // Maps status to a badge CSS class; unknown/future statuses fall back to plain .badge
+    private String badgeClass(com.sunrisedentalclinic.domain.AppointmentStatus status) {
+        switch (status) {
+            case SCHEDULED: return "badge-scheduled";
+            case COMPLETED: return "badge-completed";
+            case CANCELLED: return "badge-cancelled";
+            default: return "badge";
+        }
+    }
+%>
 <% request.setAttribute("currentPage", "dashboard"); %>
 <!DOCTYPE html>
 <html>
@@ -47,7 +61,7 @@
                 <%
                     if (upcoming == null || upcoming.isEmpty()) {
                 %>
-                <tr><td colspan="5">No upcoming appointments.</td></tr>
+                <tr><td class="table-empty" colspan="5">No upcoming appointments.</td></tr>
                 <%
                 } else {
                     for (Appointment a : upcoming) {
@@ -57,7 +71,7 @@
                     <td><%= a.getPatientID() %></td>
                     <td><%= a.getAppointmentDate() %></td>
                     <td><%= a.getAppointmentTime() %></td>
-                    <td><%= a.getStatus() %></td>
+                    <td><span class="badge <%= badgeClass(a.getStatus()) %>"><%= a.getStatus() %></span></td>
                 </tr>
                 <%
                         }

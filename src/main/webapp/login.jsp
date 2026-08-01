@@ -13,35 +13,65 @@
     <title>Sunrise Dental Clinic — Login</title>
 </head>
 <body class="login-page">
-<div class="login-container">
-    <h1>Sunrise Dental Clinic</h1>
-    <h2>Staff Login</h2>
 
-    <% if (request.getAttribute("errorMessage") != null) { %>
-    <p class="error"><%= request.getAttribute("errorMessage") %></p>
-    <% } %>
+<div class="login-overlay">
 
-    <form action="<%= ctx %>/login" method="post" onsubmit="return validateLoginForm()">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" required>
+    <div class="hero-section">
+        <h1>Sunrise Dental Clinic</h1>
+        <p>Where Every Smile Shines.</p>
+        <br>
+        <br>
+    </div>
 
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
+    <div class="login-card">
 
-        <button type="submit">Login</button>
-    </form>
+        <h2>Staff Login</h2>
+
+        <% if (request.getAttribute("errorMessage") != null) { %>
+        <p class="error"><%= request.getAttribute("errorMessage") %></p>
+        <% } %>
+
+        <form action="<%= ctx %>/login" method="post" onsubmit="return validateLoginForm()">
+
+            <label for="username">Username</label>
+            <input type="text"
+                   id="username"
+                   name="username"
+                   required>
+
+            <label for="password">Password</label>
+            <input type="password"
+                   id="password"
+                   name="password"
+                   required>
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+    </div>
+
 </div>
+
+<footer class="login-footer">
+    © 2026 Sunrise Dental Clinic. All Rights Reserved.
+</footer>
 
 <script>
     function validateLoginForm() {
         const username = document.getElementById('username').value.trim();
         const password = document.getElementById('password').value.trim();
+
         if (username === '' || password === '') {
             alert('Please enter both username and password.');
             return false;
         }
+
         return true;
     }
 </script>
+
 </body>
 </html>

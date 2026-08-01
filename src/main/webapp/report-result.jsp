@@ -4,10 +4,26 @@
   Date: 7/29/2026
   Time: 2:49 PM
 --%>
+<%--
+  Final — instanceof blocks added for DailyAppointmentReport / DentistScheduleReport.
+  Getters confirmed against Appointment.java: getAppointmentNo(), getPatientID(),
+  getDentistID(), getAppointmentDate(), getAppointmentTime(), getStatus().
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.sunrisedentalclinic.report.*" %>
 <%@ page import="com.sunrisedentalclinic.domain.Appointment" %>
 <%@ page import="java.util.List" %>
+<%!
+    // Maps status to a badge CSS class; unknown/future statuses fall back to plain .badge
+    private String badgeClass(com.sunrisedentalclinic.domain.AppointmentStatus status) {
+        switch (status) {
+            case SCHEDULED: return "badge-scheduled";
+            case COMPLETED: return "badge-completed";
+            case CANCELLED: return "badge-cancelled";
+            default: return "badge";
+        }
+    }
+%>
 <% request.setAttribute("currentPage", "reports"); %>
 <!DOCTYPE html>
 <html>
@@ -57,7 +73,7 @@
                 <%
                     if (appts.isEmpty()) {
                 %>
-                <tr><td colspan="6">No appointments found.</td></tr>
+                <tr><td class="table-empty" colspan="6">No appointments found.</td></tr>
                 <%
                 } else {
                     for (Appointment a : appts) {
@@ -68,7 +84,7 @@
                     <td><%= a.getDentistID() %></td>
                     <td><%= a.getAppointmentDate() %></td>
                     <td><%= a.getAppointmentTime() %></td>
-                    <td><%= a.getStatus() %></td>
+                    <td><span class="badge <%= badgeClass(a.getStatus()) %>"><%= a.getStatus() %></span></td>
                 </tr>
                 <%
                         }
@@ -96,7 +112,7 @@
                 <%
                     if (appts.isEmpty()) {
                 %>
-                <tr><td colspan="5">No appointments found.</td></tr>
+                <tr><td class="table-empty" colspan="5">No appointments found.</td></tr>
                 <%
                 } else {
                     for (Appointment a : appts) {
@@ -106,7 +122,7 @@
                     <td><%= a.getPatientID() %></td>
                     <td><%= a.getAppointmentDate() %></td>
                     <td><%= a.getAppointmentTime() %></td>
-                    <td><%= a.getStatus() %></td>
+                    <td><span class="badge <%= badgeClass(a.getStatus()) %>"><%= a.getStatus() %></span></td>
                 </tr>
                 <%
                         }

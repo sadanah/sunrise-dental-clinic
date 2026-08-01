@@ -53,8 +53,8 @@
                         <form action="<%= ctx %>/admin/staff" method="post" style="display:inline">
                             <input type="hidden" name="action" value="delete">
                             <input type="hidden" name="staffID" value="<%= s.getStaffID() %>">
-                            <button type="submit" class="danger"
-                                    onclick="return confirm('Delete this staff member?')">
+                            <button type="button" class="danger"
+                                    onclick="openConfirmModal('Delete this staff member?', this.closest('form'))">
                                 Delete
                             </button>
                         </form>
@@ -106,5 +106,7 @@
         </div>
     </div>
 </div>
+
+<%@ include file="/WEB-INF/jspf/confirm-modal.jspf" %>
 </body>
 </html>

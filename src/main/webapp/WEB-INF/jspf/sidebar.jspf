@@ -8,7 +8,7 @@
     if ("ADMIN".equals(role)) {
         dashboardUrl = ctx + "/admin-dashboard.jsp";
     } else if ("DENTIST".equals(role)) {
-        dashboardUrl = ctx + "/dentist-dashboard.jsp";
+        dashboardUrl = ctx + "/dentist/dashboard";
     } else {
         dashboardUrl = ctx + "/receptionist-dashboard.jsp";
     }
@@ -19,6 +19,7 @@
     <a class="nav-item <%= "dashboard".equals(currentPage) ? "active" : "" %>" href="<%= dashboardUrl %>">Dashboard</a>
     <% if ("RECEPTIONIST".equals(role)) { %>
     <a class="nav-item <%= "appointments".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/register-appointment.jsp">Appointments</a>
+    <a class="nav-item <%= "manage-patients".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/patients">Manage Patients</a>
     <a class="nav-item <%= "billing".equals(currentPage) ? "active" : "" %>" href="<%= ctx %>/generate-bill.jsp">Billing</a>
     <% } %>
     <% if ("ADMIN".equals(role)) { %>
