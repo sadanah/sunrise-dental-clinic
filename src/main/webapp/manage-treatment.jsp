@@ -51,8 +51,8 @@
                         <form action="<%= ctx %>/admin/treatments" method="post" style="display:inline">
                             <input type="hidden" name="action" value="delete">
                             <input type="hidden" name="treatmentID" value="<%= t.getTreatmentID() %>">
-                            <button type="submit" class="danger"
-                                    onclick="return confirm('Delete this treatment type?')">
+                            <button type="button" class="danger"
+                                    onclick="openConfirmModal('Delete this treatment type?', this.closest('form'))">
                                 Delete
                             </button>
                         </form>
@@ -82,5 +82,6 @@
         </div>
     </div>
 </div>
+<%@ include file="/WEB-INF/jspf/confirm-modal.jspf" %>
 </body>
 </html>

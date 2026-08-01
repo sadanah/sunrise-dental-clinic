@@ -9,5 +9,6 @@
     String ctx = request.getContextPath();
 %>
 <link rel="stylesheet" href="<%= ctx %>/css/style.css">
+<link rel="icon" type="image/svg+xml" href="<%= ctx %>/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">

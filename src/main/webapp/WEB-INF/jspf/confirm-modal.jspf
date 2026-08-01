@@ -1,0 +1,44 @@
+<%-- Reusable destructive-action confirmation modal.
+     Include once near the end of <body>, then trigger from any button via:
+     onclick="openConfirmModal('Message here', this.closest('form'))"
+     instead of the native browser confirm(). --%>
+<div id="confirmModalOverlay" class="modal-overlay" style="display:none;">
+    <div class="modal-box">
+        <p id="confirmModalMessage" class="modal-message"></p>
+        <div class="modal-actions">
+            <button type="button" class="secondary" onclick="closeConfirmModal()">Cancel</button>
+            <button type="button" class="danger" onclick="submitPendingForm()">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let pendingForm = null;
+
+    function openConfirmModal(message, formEl) {
+        pendingForm = formEl;
+        document.getElementById('confirmModalMessage').textContent = message;
+        document.getElementById('confirmModalOverlay').style.display = 'flex';
+    }
+
+    function closeConfirmModal() {
+        pendingForm = null;
+        document.getElementById('confirmModalOverlay').style.display = 'none';
+    }
+
+    function submitPendingForm() {
+        if (pendingForm) {
+            pendingForm.submit();
+        }
+        closeConfirmModal();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const overlay = document.getElementById('confirmModalOverlay');
+        if (overlay) {
+            overlay.addEventListener('click', function (e) {
+                if (e.target === overlay) closeConfirmModal();
+            });
+        }
+    });
+</script>
