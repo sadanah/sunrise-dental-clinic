@@ -51,6 +51,7 @@ public class AccessControlFilter implements Filter {
         if ((path.equals("/receptionist-dashboard.jsp")
                 || path.startsWith("/appointments/")
                 || path.equals("/billing")
+                || path.equals("/patients")
                 || path.equals("/register-appointment.jsp")
                 || path.equals("/cancel-appointment.jsp")
                 || path.equals("/search-appointment.jsp")
