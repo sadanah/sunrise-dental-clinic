@@ -23,7 +23,7 @@ public class ServiceFactory {
     private static final IBillingService billingService = new BillingService(appointmentDAO, billDAO, dentistDAO, treatmentTypeDAO);
     private static final ReportFactory reportFactory = new ReportFactory(appointmentDAO, billDAO);
     private static final IAdminService adminService = new AdminService(staffDAO, treatmentTypeDAO, reportFactory, authService);
-    private static final ClinicFacade clinicFacade = new ClinicFacade(appointmentService, billingService, authService);
+    private static final ClinicFacade clinicFacade = new ClinicFacade(appointmentService, billingService, authService, patientDAO);
 
     private ServiceFactory() {} // prevent instantiation
 
